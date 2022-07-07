@@ -1,0 +1,14 @@
+version: "3.2"
+services:
+  mqtt:
+    build: mqtt
+    container_name: mqtt_ca
+    ports:
+      - "1883:1883"
+      - "8883:8883"
+    command: >
+      bash -c "cp /etc/mosquitto/seq/ca.pem /etc/mosquitto/ca_certificate
+      && chmod 664 /etc/mosquitto/ca_certificate/ca.pem
+      && /usr/local/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf"
+    volumes:
+      - ./mqtt/ca:/etc/mosquitto/ca_certificate
