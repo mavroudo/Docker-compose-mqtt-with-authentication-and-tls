@@ -27,4 +27,6 @@ mosquitto_pub -t test -u user2 -P pass2 -p 8883 --cafile mqtt/ca/ca.pem --insecu
 ```
 
 PS. The insecure command at the end means that the ca will not be authenticated, which is ok since 
-the certificates are self signed
+the certificates are self-signed. \
+PS2. The ca.pem file will be owned by the root user, in order to ensure that every file will have access
+add a line in docker-compose (bellow the line that changes the mode), that will change the owner to you.
